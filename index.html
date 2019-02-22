@@ -22,8 +22,8 @@
       return array;
     }
 
-    fetch('https://raw.githubusercontent.com/kpost/biblical_names/master/names.txt')
-    // fetch('names.txt')
+    // fetch('https://raw.githubusercontent.com/kpost/biblical_names/master/names.txt')
+    fetch('names.txt')
     .then(response => response.text())
     .then(function(text) {
       var name = shuffle( text.split("\n") )[0]
