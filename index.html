@@ -3,11 +3,53 @@
 <head>
   <title>Bijbelse Naam Generator</title>
   <script>
-    fetch('names.txt').then(response => response.text()).then(text => console.log(text))
+    function shuffle(array) {
+      var currentIndex = array.length, temporaryValue, randomIndex;
+
+      // While there remain elements to shuffle...
+      while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+
+      return array;
+    }
+
+    fetch('https://raw.githubusercontent.com/kpost/biblical_names/master/names.txt')
+    // fetch('names.txt')
+    .then(response => response.text())
+    .then(function(text) {
+      var name = shuffle( text.split("\n") )[0]
+      document.getElementById("daname").innerHTML = name
+
+      var img = "img/" + shuffle( ["abel", "mark", "matthew", "moses"] )[0] + ".jpg";
+      document.getElementById("pic").src = img;
+    })
   </script>
+
+  <style>
+    body{
+      font-family:Arial;
+      text-align:center;
+      padding-top:150px;
+    }
+
+    h1{
+      font-size:80px;
+    }
+  </style>
 </head>
 
 <body>
-  <h1></h1>
+  <img id="pic" src="">
+  <h2>Ziet, aanschouwt de nieuwe servernaam:</h2>
+  <h1 id="daname"></h1>
 </body>
 </html>
